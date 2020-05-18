@@ -10,9 +10,8 @@ public class Select extends JFrame{
 		JPanel p;
 		JLabel la, la1, la2, la3, la4, la5;
 		JButton Mail, Post, Iq1, Ifq, Cancel, ChangeIf, Management;
-		Login login = new Login();
     	public Select() {
-    	setTitle(  login.getUsername()+ "님 로그인 중 입니다.");
+    	setTitle("receipt");
 			// setting
 	        setSize(800, 510);
 			setResizable(false);
