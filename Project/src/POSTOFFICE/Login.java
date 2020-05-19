@@ -13,6 +13,8 @@ import java.util.Collection;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
 
+import com.mysql.jdbc.StringUtils;
+
 
 public class Login extends Frame implements ActionListener {
 	// jdbc 설정
@@ -48,7 +50,7 @@ public class Login extends Frame implements ActionListener {
 		this.username = username;
 	}
 	*/
-
+	
 	Login() {
 	try {
 	// 로그인 버튼이 클릭 되었을시에 jdbc드라이버를 등록
@@ -86,13 +88,18 @@ public class Login extends Frame implements ActionListener {
 	id = log.tex1.getText().trim();
 	pawt = log.tex2.getText().trim();
 	
+	if(StringUtils.isNullOrEmpty(id)==true|StringUtils.isNullOrEmpty(pawt)==true) {
+		new Login();
+	}else {
+	
 	// SELECT 쿼리를 작성한다. 해당하는 아이디값의 패스워드를 검색한다.
 	String query = "SELECT * FROM testlist1.member where id='" + id + "'";
-	System.out.println(query);
+	//System.out.println(query);
 	try {
 	// executeQuery() 메서드로 SELECT문의 실행시키고 결과로 ResultSet 객체를 받는다.
 		ResultSet rs = stmt.executeQuery(query);
 	// 레코드가 있는지 검사
+	
 	if (rs.next()) {
 	//
 		username = rs.getString("name");
@@ -114,6 +121,7 @@ public class Login extends Frame implements ActionListener {
 	
 	} catch (Exception b) {
 	b.printStackTrace();
+	}
 	}
 	}
 	}
