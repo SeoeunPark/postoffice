@@ -11,9 +11,18 @@ public class PrintJFrame extends JFrame{
 	showParcelChoose spc = new showParcelChoose();
 	showPayChoose spac = new showPayChoose();
 	showPayChoose pay = new showPayChoose();
-	MailCheck mc = new MailCheck();
 	ParcelCheck pc = new ParcelCheck();
+	MailCheck mc = new MailCheck();
 	
+	
+	 String count = mc.tf1.getText().trim(); //count 받아오기 
+	 String weight = mc.tf2.getText().trim(); //weight 값 받아오기
+	 
+	 int c = Integer.parseInt(count); //형변환
+	 int w = Integer.parseInt(weight);
+
+	
+	 
 	JPanel p1; 
 	JLabel la, la1, la2, la3, la4; //la 틀  / la1... 출력
 	JButton print, main;
@@ -74,7 +83,9 @@ public class PrintJFrame extends JFrame{
 	 
         //add
         p1.setBackground(new Color(238, 232, 170));
-	    
+       
+        itemStateChanged(c,w);
+        
 	    p1.add(la);
 	    p1.add(la1);
 	    p1.add(la2);
@@ -83,16 +94,17 @@ public class PrintJFrame extends JFrame{
 	    p1.add(print);
 	    p1.add(main);
 	    
+	    getContentPane().add(p1);
+	    
 	    
 	}
-		public void itemStateChanged(ItemEvent e){ // 텍스트필드와 라디오버튼의 이벤트처리를 위한 메서드
-			PrintJFrame pj = new PrintJFrame();
-			double weight, count, paymoney, money; 
-			double result = 0;
-			weight = Double.parseDouble(smc.w1.getText());
-			count = Double.parseDouble(smc.c1.getText());
-			money = Double.parseDouble(pay.tf.getText());
+		public void itemStateChanged(int c, int w){ // 텍스트필드와 라디오버튼의 이벤트처리를 위한 메서드
 			
+			PrintJFrame pj = new PrintJFrame();
+			int weight = w;
+			int count = c ;
+			int paymoney = 0, money = 0; 
+			double result = 0;
 			result = weight * count;
 
 		    if(smc.button.isSelected()) {
@@ -145,7 +157,7 @@ public class PrintJFrame extends JFrame{
 					}
 				}
 				else if(result > 10.0) {
-					paymoney = result*200;
+					paymoney = (int) (result*200);
 					la1.setText("수량 : "+count+"개");
 					la2.setText("중량 : "+weight+"g");
 					la3.setText("총 결제 금액은 "+paymoney+"원 이며");
@@ -193,7 +205,7 @@ public class PrintJFrame extends JFrame{
 					la3.setText("예상 금액 : "+paymoney+"원");
 				}
 				else if(result > 10.0) {
-					paymoney = result*200;
+					paymoney = (int) (result * 200);
 					la1.setText("수량 : "+count+"개");
 					la2.setText("중량 : "+weight+"g");
 					la3.setText("예상 금액 : "+paymoney+"원");

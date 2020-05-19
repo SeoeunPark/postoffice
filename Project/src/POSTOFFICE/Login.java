@@ -89,6 +89,7 @@ public class Login extends Frame implements ActionListener {
 	pawt = log.tex2.getText().trim();
 	
 	if(StringUtils.isNullOrEmpty(id)==true|StringUtils.isNullOrEmpty(pawt)==true) {
+		hide();
 		new Login();
 	}else {
 	
@@ -115,6 +116,7 @@ public class Login extends Frame implements ActionListener {
 	}else {
 		System.out.println("Login Fail");
 		//틀리면 메인으로.
+		hide();
 		new MainJFrame();
 		}
 	}

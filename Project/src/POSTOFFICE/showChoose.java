@@ -9,11 +9,13 @@ import javax.swing.*;
 public class showChoose extends JFrame {
 	JPanel p;
 	JLabel la;
-	JButton bt1, bt2;
+	JButton bt1, bt2,bt3;
+	Select select = new Select();
+	
 	public showChoose() {
 		// setting
 	    setTitle("Choose");
-	    setSize(350, 150);
+	    setSize(500, 200);
 		setResizable(false);
 		setLocationRelativeTo(null);
 	    setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -38,6 +40,7 @@ public class showChoose extends JFrame {
 	    bt1.setBackground(Color.WHITE);
 	    bt1.setBounds(32, 70, 134, 23);
 	    p.add(bt1);
+	    
 	    bt1.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 					hide();
@@ -54,6 +57,20 @@ public class showChoose extends JFrame {
 	    	public void actionPerformed(ActionEvent e) {
 					hide();
 					new ParcelCheck();
+	    	}
+	    	});
+	    
+	    bt3 = new JButton("뒤로 ");
+	    bt3.setForeground(new Color(0, 0, 128));
+	    bt3.setBackground(Color.WHITE);
+	    bt3.setBounds(330, 70, 140, 23);
+	    p.add(bt3);
+	    
+	    bt3.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+					hide();
+					select.setTitle("로그인 중 입니다.");
+					select.setVisible(true);
 	    	}
 	    	});
     }

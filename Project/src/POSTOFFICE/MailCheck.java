@@ -10,7 +10,7 @@ public class MailCheck extends JFrame {
 	//PrintJFrame pj = new PrintJFrame();
 	JPanel p;
 	JLabel la, la1, la2;
-	JButton bt1, bt2;
+	JButton bt1, bt2,bt3;
 	JTextField tf1, tf2;
     public MailCheck() {
     	//MailCheck mc = new MailCheck();
@@ -32,7 +32,7 @@ public class MailCheck extends JFrame {
         
         // add
         la = new JLabel("Mail Check");
-        la.setIcon(new ImageIcon(MainJFrame.class.getResource("/TEST/IMG/t.PNG")));
+        //la.setIcon(new ImageIcon(MainJFrame.class.getResource("/TEST/IMG/t.PNG")));
         la.setForeground(new Color(178, 34, 34));
         la.setFont(new Font("Felix Titling", Font.BOLD, 26));
         la.setBounds(12, 10, 235, 57);
@@ -46,7 +46,7 @@ public class MailCheck extends JFrame {
         p.add(tf1);
         tf1.setColumns(10);
         
-        la2 = new JLabel("우편 중량을 입력하세요(단위 : 0.0kg)");
+        la2 = new JLabel("우편 중량을 입력하세요(단위 : kg)");
         la2.setBounds(12, 168, 260, 26);
         p.add(la2);
         tf2 = new JTextField();
@@ -80,5 +80,12 @@ public class MailCheck extends JFrame {
 	    			new Select();
 	    	}
 	    	});
+        
+        		
+        		
+	    	
+	    	
+	    	
+	    	
 	}
 }

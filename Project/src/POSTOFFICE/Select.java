@@ -23,6 +23,7 @@ public class Select extends JFrame{
 	        p.setBackground(new Color(230, 230, 250));
 	        getContentPane().add(p);
 	        
+	        /*
 	        Mail = new JButton(); //우편접수
 	        Mail.setBounds(84,71,102,37);
 	        Mail.setIcon(new ImageIcon(MainJFrame.class.getResource("/TEST/IMG/Mailchoose1.PNG")));
@@ -39,7 +40,7 @@ public class Select extends JFrame{
 	        
 	        Mail.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
-						hide();
+		    		hide();
 						new showMailChoose();
 		    	}
 		    });
@@ -53,7 +54,8 @@ public class Select extends JFrame{
 	        Post.setSize(175,190);
 	        p.add(Post);
 	        
-	        la1 = new JLabel("택배접수");
+	        
+	       	la1 = new JLabel("택배접수");
 			la1.setFont(new Font("굴림", Font.PLAIN, 14));
 			la1.setBounds(368, 189, 57, 15);
 			p.add(la1);
@@ -64,7 +66,8 @@ public class Select extends JFrame{
 						new showParcelChoose(); 
 		    	}
 		    });
-	       
+	       */
+	        
 	        Iq1 = new JButton(); //요금조회
 			Iq1.setBounds(509,53,230,180);
 			Iq1.setIcon(new ImageIcon(MainJFrame.class.getResource("/TEST/IMG/Searchmail1.PNG")));
@@ -136,7 +139,7 @@ public class Select extends JFrame{
 		    ChangeIf.setFocusPainted(false); //테두리 x
 		    ChangeIf.setSize(175,165);
 			p.add(ChangeIf);
-			
+			/*
 			la5 = new JLabel("정보수정");
 			la5.setFont(new Font("굴림", Font.PLAIN, 14));
 			la5.setBounds(608, 413, 57, 15);
@@ -150,7 +153,7 @@ public class Select extends JFrame{
 		    	}
 		    });
 			
-			/*
+			
 			Management = new JButton(); //회원관리
 			Management.setBounds(677, 346, 107, 125);
 			Management.setIcon(new ImageIcon(MainJFrame.class.getResource("/TEST/IMG/Gearwhell1.PNG"))); //사이즈조정하기
