@@ -10,11 +10,13 @@ import javax.swing.table.DefaultTableModel;
 
 public class MenuJTabaleExam extends JFrame implements ActionListener {
   JMenu m = new JMenu("관리");
-  JMenuItem insert = new JMenuItem("가입");
+  //JMenuItem insert = new JMenuItem("가입");
   JMenuItem update = new JMenuItem("수정");
-  JMenuItem delete = new JMenuItem("삭제");
+  JMenuItem delete = new JMenuItem("회원탈퇴");
   JMenuItem quit = new JMenuItem("종료");
+  JMenuItem back = new JMenuItem("메인으로");
   JMenuBar mb = new JMenuBar();
+  Select select = new Select();
 
   String[] name = { "id", "name", "birth", "pn", "addr", "users" };
 
@@ -41,10 +43,11 @@ JButton serach = new JButton("검색");
       super("회원관리");
 
       //메뉴아이템을 메뉴에 추가
-      m.add(insert);
+      //m.add(insert); 가입 제외 
       m.add(update);
       m.add(delete);
       m.add(quit);
+      m.add(back);
       //메뉴를 메뉴바에 추가
       mb.add(m);
      
@@ -69,7 +72,7 @@ JButton serach = new JButton("검색");
       super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
       // 이벤트등록
-      insert.addActionListener(this);
+      //insert.addActionListener(this);
       update.addActionListener(this);
       delete.addActionListener(this);
       quit.addActionListener(this);
@@ -96,10 +99,13 @@ JButton serach = new JButton("검색");
    * */
 
   public void actionPerformed(ActionEvent e) {
+	  /*
       if (e.getSource() == insert) {// 가입 메뉴아이템 클릭
           new UserJDailogGUI(this, "가입");
 
-      } else if (e.getSource() == update) {// 수정 메뉴아이템 클릭
+      } 
+      */
+	  if (e.getSource() == update) {// 수정 메뉴아이템 클릭
           new UserJDailogGUI(this, "수정");
 
       } else if (e.getSource() == delete) {// 삭제 메뉴아이템 클릭
@@ -111,7 +117,7 @@ JButton serach = new JButton("검색");
           System.out.println("값 : " + obj);
 
           if (dao.userDelete(obj.toString()) > 0) {
-              UserJDailogGUI.messageBox(this, "레코드 삭제되었습니다.");
+              UserJDailogGUI.messageBox(this, "회원 탈퇴되었습니다.");
              
               //리스트 갱신
               dao.userSelectAll(dt);
@@ -119,12 +125,18 @@ JButton serach = new JButton("검색");
                   jt.setRowSelectionInterval(0, 0);
 
           } else {
-              UserJDailogGUI.messageBox(this, "레코드가 삭제되지 않았습니다.");
+              UserJDailogGUI.messageBox(this, "회원 탈퇴되지 않았습니다.");
           }
 
       } else if (e.getSource() == quit) {// 종료 메뉴아이템 클릭
           System.exit(0);
 
+      }else if(e.getSource() == back) {
+    	  hide();
+    	  new Login();
+    	  select.setTitle("로그인 중 입니다.");
+			select.setVisible(true);
+			
       } else if (e.getSource() == serach) {// 검색 버튼 클릭
           // JComboBox에 선택된 value 가져오기
           String fieldName = combo.getSelectedItem().toString();

@@ -109,7 +109,8 @@ public class Select extends JFrame{
 						new MenuJTabaleExam();
 		    	}
 		    });
-			
+			/*
+			 * 
 			Cancel = new JButton(); //취소
 			Cancel.setBounds(299, 286, 163, 69);
 			Cancel.setIcon(new ImageIcon(MainJFrame.class.getResource("/TEST/IMG/Cancel1.PNG")));
@@ -139,7 +140,7 @@ public class Select extends JFrame{
 		    ChangeIf.setFocusPainted(false); //테두리 x
 		    ChangeIf.setSize(175,165);
 			p.add(ChangeIf);
-			/*
+			
 			la5 = new JLabel("정보수정");
 			la5.setFont(new Font("굴림", Font.PLAIN, 14));
 			la5.setBounds(608, 413, 57, 15);

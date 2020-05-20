@@ -179,6 +179,7 @@ public class UserDefaultJTableDAO {
    * 검색단어에 해당하는 레코드 검색하기 (like연산자를 사용하여 _, %를 사용할때는 PreparedStatemnet안된다. 반드시
    * Statement객체를 이용함)
    * */
+  
   public void getUserSearch(DefaultTableModel dt, String fieldName,
           String word) {
       String sql = "SELECT * FROM testlist1.member WHERE " + fieldName.trim()

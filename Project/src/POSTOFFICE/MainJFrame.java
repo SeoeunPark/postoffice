@@ -9,6 +9,7 @@ import javax.swing.*;
 
 
 public class MainJFrame extends JFrame {
+	//우체국이 아닌 자신이 보낸 우편물을 확인, 보관, 삭제하는 기능을 한다. 
 	JPanel p;
 	JLabel la,la1,la2,la3;
 	JButton bt1, bt2;
