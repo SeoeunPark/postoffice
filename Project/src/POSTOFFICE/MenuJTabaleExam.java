@@ -26,13 +26,13 @@ public class MenuJTabaleExam extends JFrame implements ActionListener {
    * South 영역에 추가할 Componet들
    */
   JPanel p = new JPanel();
-  String[] comboName = { "  ALL  ", "  ID  ", " name ", "birth", "  pn  ", " addr ", "users" };
+  // String[] comboName = { "  ALL  ", "  ID  ", " name ", "birth", "  pn  ", " addr ", "users" }; //검색기능 불필요 
 
-  JComboBox combo = new JComboBox(comboName);
-  JTextField jtf = new JTextField(20);
+  // JComboBox combo = new JComboBox(comboName); //검색기능 불필요 
+  //JTextField jtf = new JTextField(20); //검색기능
   JScrollPane jsp = new JScrollPane(jt);
-JButton serach = new JButton("검색");
-
+  // JButton serach = new JButton("검색");  //검색기능 불필요함 
+ 
   UserDefaultJTableDAO dao = new UserDefaultJTableDAO();
 
   /**
@@ -57,9 +57,9 @@ JButton serach = new JButton("검색");
      
       // South영역
       p.setBackground(Color.yellow);
-      p.add(combo);
-      p.add(jtf);
-      p.add(serach);
+      //p.add(combo); // 검색기능 
+      //p.add(jtf);
+      // p.add(serach); 검색기능 
       p.setBackground(Color.RED);
       add(jsp, "Center");
       add(p, "South");
@@ -76,8 +76,8 @@ JButton serach = new JButton("검색");
       update.addActionListener(this);
       delete.addActionListener(this);
       quit.addActionListener(this);
-      serach.addActionListener(this);
-
+      // serach.addActionListener(this); 검색기능 
+      back.addActionListener(this);
       // 모든레코드를 검색하여 DefaultTableModle에 올리기
       dao.userSelectAll(dt);
      
@@ -107,7 +107,6 @@ JButton serach = new JButton("검색");
       */
 	  if (e.getSource() == update) {// 수정 메뉴아이템 클릭
           new UserJDailogGUI(this, "수정");
-
       } else if (e.getSource() == delete) {// 삭제 메뉴아이템 클릭
           // 현재 Jtable의 선택된 행과 열의 값을 얻어온다.
           int row = jt.getSelectedRow();
@@ -133,11 +132,10 @@ JButton serach = new JButton("검색");
 
       }else if(e.getSource() == back) {
     	  hide();
-    	  new Login();
-    	  select.setTitle("로그인 중 입니다.");
+			select.setTitle("로그인 중 입니다.");
 			select.setVisible(true);
-			
-      } else if (e.getSource() == serach) {// 검색 버튼 클릭
+      }/* 
+      else if (e.getSource() == serach) {// 검색 버튼 클릭
           // JComboBox에 선택된 value 가져오기
           String fieldName = combo.getSelectedItem().toString();
           System.out.println("필드명 " + fieldName);
@@ -156,7 +154,7 @@ JButton serach = new JButton("검색");
                       jt.setRowSelectionInterval(0, 0);
               }
           }
-      }
+      }*/
 
   }//actionPerformed()----------
 }

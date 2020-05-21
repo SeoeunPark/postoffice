@@ -106,7 +106,8 @@ public class Select extends JFrame{
 			Ifq.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
 						hide();
-						new MenuJTabaleExam();
+						//new MenuJTabaleExam();
+						new Check();
 		    	}
 		    });
 			/*
