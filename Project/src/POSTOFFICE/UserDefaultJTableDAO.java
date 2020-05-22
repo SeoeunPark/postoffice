@@ -16,7 +16,6 @@ public class UserDefaultJTableDAO {
   
   String driver = "com.mysql.jdbc.Driver";
   String url = "jdbc:mysql://localhost/testlist1?characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false\\r\\n&serverTimezone=UTC&useSSL=false";
-
   Check ch = new Check();
   /**
    * 로드 연결을 위한 생성자
@@ -105,9 +104,11 @@ public class UserDefaultJTableDAO {
    * */
   public void userSelectAll(DefaultTableModel t_model) {
       try {
+    	  String idcheck=ch.getId();
+    	  System.out.print("확인"+ch.getId());
           st = con.createStatement();
           rs = st.executeQuery("select * from testlist1.member order by id");
-
+          //rs = st.executeQuery("SELECT * FROM testlist1.member WHERE id='"+idcheck+"'");
           // DefaultTableModel에 있는 기존 데이터 지우기
           for (int i = 0; i < t_model.getRowCount();) {
               t_model.removeRow(0);

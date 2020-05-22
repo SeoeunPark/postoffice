@@ -17,7 +17,6 @@ public class PrintJFrame extends JFrame{
 	
 	 String count = mc.tf1.getText().trim(); //count 받아오기 
 	 String weight = mc.tf2.getText().trim(); //weight 값 받아오기
-	 
 	 int c = Integer.parseInt(count); //형변환
 	 int w = Integer.parseInt(weight);
 
@@ -35,7 +34,6 @@ public class PrintJFrame extends JFrame{
 		setResizable(false);
 		setLocationRelativeTo(null);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    
         // visible
         setVisible(true);
         
@@ -83,7 +81,7 @@ public class PrintJFrame extends JFrame{
 	 
         //add
         p1.setBackground(new Color(238, 232, 170));
-       
+       System.out.println("c"+c);
         itemStateChanged(c,w);
         
 	    p1.add(la);
@@ -99,7 +97,7 @@ public class PrintJFrame extends JFrame{
 	    
 	}
 		public void itemStateChanged(int c, int w){ // 텍스트필드와 라디오버튼의 이벤트처리를 위한 메서드
-			
+			System.out.print(c);
 			PrintJFrame pj = new PrintJFrame();
 			int weight = w;
 			int count = c ;
