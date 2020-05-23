@@ -23,7 +23,6 @@ public class Select extends JFrame{
 	        p.setBackground(new Color(230, 230, 250));
 	        getContentPane().add(p);
 	        
-	        /*
 	        Mail = new JButton(); //우편접수
 	        Mail.setBounds(84,71,102,37);
 	        Mail.setIcon(new ImageIcon(MainJFrame.class.getResource("/TEST/IMG/Mailchoose1.PNG")));
@@ -41,7 +40,7 @@ public class Select extends JFrame{
 	        Mail.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
 		    		hide();
-						new showMailChoose();
+						new MailCheck();
 		    	}
 		    });
 			
@@ -63,10 +62,9 @@ public class Select extends JFrame{
 	        Post.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
 						hide();
-						new showParcelChoose(); 
+						new ParcelCheck();
 		    	}
 		    });
-	       */
 	        
 	        Iq1 = new JButton(); //요금조회
 			Iq1.setBounds(509,53,230,180);
@@ -111,7 +109,6 @@ public class Select extends JFrame{
 		    	}
 		    });
 			/*
-			 * 
 			Cancel = new JButton(); //취소
 			Cancel.setBounds(299, 286, 163, 69);
 			Cancel.setIcon(new ImageIcon(MainJFrame.class.getResource("/TEST/IMG/Cancel1.PNG")));

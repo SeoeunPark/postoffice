@@ -16,7 +16,6 @@ import javax.swing.JRootPane;
 
 import com.mysql.jdbc.StringUtils;
 
-
 public class Login extends Frame implements ActionListener {
 	// jdbc 설정
 	private String url = "jdbc:mysql://localhost/testlist1?characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false\\r\\n&serverTimezone=UTC&useSSL=false";// user테이블을 수정하면
@@ -24,6 +23,7 @@ public class Login extends Frame implements ActionListener {
 	private String strPassword = "se9703709"; // 계정 패스워드
 	private String strMySQLDriver = "com.mysql.jdbc.Driver"; // 드라이버
 	//JPanel p1;
+	
 	Connection con;
 	Statement stmt;
 	ResultSet rs;

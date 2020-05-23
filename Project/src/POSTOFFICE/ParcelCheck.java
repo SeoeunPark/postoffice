@@ -63,7 +63,7 @@ public class ParcelCheck extends JFrame {
         bt1.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 					hide();
-					new PrintJFrame();
+					new Receipt();
 	    	}
 	    	});
         
