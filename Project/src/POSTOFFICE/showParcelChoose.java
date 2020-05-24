@@ -94,7 +94,7 @@ public class showParcelChoose extends JFrame {
         button.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 					hide();
-					new showPayChoose();
+					new Receipt();
 	    	}
 	    	});
         

@@ -40,7 +40,7 @@ public class Select extends JFrame{
 	        Mail.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
 		    		hide();
-						new MailCheck();
+						new showMailChoose();
 		    	}
 		    });
 			
@@ -62,7 +62,7 @@ public class Select extends JFrame{
 	        Post.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
 						hide();
-						new ParcelCheck();
+						new showParcelChoose();
 		    	}
 		    });
 	        
