@@ -2,7 +2,12 @@ package POSTOFFICE;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.*; 
+import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import javax.swing.*; 
 
 public class showMailChoose extends JFrame {
@@ -103,9 +108,11 @@ public class showMailChoose extends JFrame {
         button_1.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 					hide();
-					
 					sel.setVisible(true);
 	    	}
 	    	});
    	}
+	
+
+	
 }	

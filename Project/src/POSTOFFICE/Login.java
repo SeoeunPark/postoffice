@@ -103,7 +103,6 @@ public class Login extends Frame implements ActionListener {
 	// 레코드가 있는지 검사
 	
 	if (rs.next()) {
-	//
 		username = rs.getString("name");
 		System.out.println(username);
 		System.out.println(rs.getString("name"));

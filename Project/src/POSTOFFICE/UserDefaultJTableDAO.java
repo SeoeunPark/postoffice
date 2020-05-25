@@ -13,6 +13,8 @@ public class UserDefaultJTableDAO {
   Statement st;
   PreparedStatement ps;
   ResultSet rs;
+  LoginGUI log = new LoginGUI();
+  
   
   String driver = "com.mysql.jdbc.Driver";
   String url = "jdbc:mysql://localhost/testlist1?characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false\\r\\n&serverTimezone=UTC&useSSL=false";
@@ -127,6 +129,8 @@ public class UserDefaultJTableDAO {
           dbClose();
       }
   }//userSelectAll()
+  
+  //우편 수량 넣기 
 
   /**
    * ID에 해당하는 레코드 삭제하기

@@ -137,7 +137,7 @@ import java.util.Scanner;
 			System.out.println("");
 			System.out.println("운송장번호는 "+number+"입니다.");
 			String dbCommand = "INSERT testdb.user VALUES('"+address+"','"+addressee+"','"+addresser +"','"+phoneNumber+"','"+number+"','"+Type+"')";
-			System.out.println("**"+dbCommand);
+			//System.out.println("**"+dbCommand);
 			stmt.executeUpdate(dbCommand);
 
 			conn.close();
