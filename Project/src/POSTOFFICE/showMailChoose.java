@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.*; 
@@ -16,7 +18,7 @@ public class showMailChoose extends JFrame {
 	JTextField w1, c1, ad1, ad2, ad3;
 	JButton button, button_1;
 	JLabel la1, la2, la3, la4, la5, la6;
-	Login log = new Login();
+	LoginGUI log = new LoginGUI();
 	Select sel = new Select();
 	
 	public showMailChoose() {
@@ -98,6 +100,7 @@ public class showMailChoose extends JFrame {
         button.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 					hide();
+					
 					new Receipt();
 	    	}
 	    	});
@@ -112,7 +115,5 @@ public class showMailChoose extends JFrame {
 	    	}
 	    	});
    	}
-	
-
 	
 }	

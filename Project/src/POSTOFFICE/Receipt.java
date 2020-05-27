@@ -38,8 +38,6 @@ public class Receipt extends JFrame {
 	  
 	Receipt(){
 		// setting
-		System.out.println("로그인"+log.tex1.getText().trim());
-		System.out.println(showmail.w1.getText());
 	    setTitle("접수완료");
 	    setSize(300, 250);
 		setResizable(false);
@@ -84,15 +82,15 @@ public class Receipt extends JFrame {
 	          java.util.Scanner in = new java.util.Scanner(System.in);
 	  			java.sql.Statement stmt = con.createStatement();
 	          java.io.InputStreamReader isr = new java.io.InputStreamReader(System.in);
-	          //String id = log.tex1.getText().trim();
-	          String w1 = showmail.w1.getText().trim();
-	          String c1 =showmail.c1.getText().trim();
-	          String ad1= showmail.ad1.getText().trim();
-	          String ad2 = showmail.ad2.getText().trim();
-	          String ad3 = showmail.ad3.getText().trim();
+	          int random = (int) Math.random();
+	          String idstr = log.tex1.getText().trim();
+	          String w1str = showmail.w1.getText().trim();
+	          String c1str =showmail.c1.getText().trim();
+	          String ad1str= showmail.ad1.getText().trim();
+	          String ad2str = showmail.ad2.getText().trim();
+	          String ad3str = showmail.ad3.getText().trim();
 	          //System.out.println(id);
-	          System.out.println(w1);
-	          String dbCommand = "INSERT testlist1.order VALUES('"+203233+"','id','"+w1+"','"+c1+"','"+ad1+"','"+ad2+"','"+ad3+"')";
+	          String dbCommand = "INSERT testlist1.order VALUES('111','"+idstr+"','"+w1str+"','"+c1str+"','"+ad1str+"','"+ad2str+"','"+ad3str+"')";
 	          stmt.executeUpdate(dbCommand);
 	      } catch (ClassNotFoundException e) {
 	          System.out.println(e + "=> 로드 fail");
