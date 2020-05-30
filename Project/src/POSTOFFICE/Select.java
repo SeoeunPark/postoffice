@@ -86,7 +86,7 @@ public class Select extends JFrame{
 						new showChoose();
 		    	}
 		    });
-			 
+	
 			Ifq = new JButton(); //정보조회
 			Ifq.setBounds(67, 298, 163, 69);
 			Ifq.setIcon(new ImageIcon(MainJFrame.class.getResource("/TEST/IMG/Searchnumber1.PNG")));
