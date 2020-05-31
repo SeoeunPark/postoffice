@@ -91,6 +91,7 @@ public class Receipt extends JFrame {
 	          String ad3str = showmail.ad3.getText().trim();
 	          //System.out.println(id);
 	          //디비 연결 필요 
+	          //왜 안 들어갈까..
 	          String dbCommand = "INSERT testlist1.order VALUES('111','"+idstr+"','"+w1str+"','"+c1str+"','"+ad1str+"','"+ad2str+"','"+ad3str+"')";
 	          stmt.executeUpdate(dbCommand);
 	      } catch (ClassNotFoundException e) {
