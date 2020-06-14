@@ -34,7 +34,7 @@ public class Receipt extends JFrame {
 	
 	
 	String driver = "com.mysql.jdbc.Driver";
-	  String url = "jdbc:mysql://localhost/testlist1?characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false\\r\\n&serverTimezone=UTC&useSSL=false";
+	String url = "jdbc:mysql://localhost/testlist1?characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false\\r\\n&serverTimezone=UTC&useSSL=false";
 	  
 	Receipt(){
 		// setting
@@ -83,6 +83,17 @@ public class Receipt extends JFrame {
 	  			java.sql.Statement stmt = con.createStatement();
 	          java.io.InputStreamReader isr = new java.io.InputStreamReader(System.in);
 	          int random = (int) Math.random();
+	          
+//	          ps = con.prepareStatement("insert into testlist1.order values(?,?,?,?,?,?,?)");
+//	          ps.setString(1, "123");
+//	          ps.setString(2, log.tex1.getText());
+//	          ps.setString(3, showmail.w1.getText());
+//	          ps.setString(4, showmail.c1.getText());
+//	          ps.setString(5, showmail.ad1.getText());
+//	          ps.setString(6, showmail.ad2.getText());
+//	          ps.setString(7, showmail.ad3.getText());
+	          
+	          
 	          String idstr = log.tex1.getText().trim();
 	          String w1str = showmail.w1.getText().trim();
 	          String c1str =showmail.c1.getText().trim();
@@ -94,6 +105,7 @@ public class Receipt extends JFrame {
 	          //디비 연결...
 	          String dbCommand = "INSERT testlist1.order VALUES('111','"+idstr+"','"+w1str+"','"+c1str+"','"+ad1str+"','"+ad2str+"','"+ad3str+"')";
 	          stmt.executeUpdate(dbCommand);
+	          
 	      } catch (ClassNotFoundException e) {
 	          System.out.println(e + "=> 로드 fail");
 	      } catch (SQLException e) {
