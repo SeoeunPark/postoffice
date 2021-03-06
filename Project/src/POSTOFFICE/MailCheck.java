@@ -1,91 +1,95 @@
 package POSTOFFICE;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.*; 
-import javax.swing.*; 
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+
+import javax.swing.*;
+
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 
 public class MailCheck extends JFrame {
-	//PrintJFrame pj = new PrintJFrame();
-	JPanel p;
-	JLabel la, la1, la2;
-	JButton bt1, bt2,bt3;
-	JTextField tf1, tf2;
-    public MailCheck() {
-    	//MailCheck mc = new MailCheck();
-    	// setting
-        setTitle("우편요금조회");
-        setSize(400, 300);
-		setResizable(false);
-		setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       
-        // panel
-        p = new JPanel();
-	    p.setLayout(null);
-        p.setBackground(new Color(245, 245, 220));
-        getContentPane().add(p);
+	BufferedImage img = null;
+	
+	MailCheck() {
+		setTitle("우편 요금조회");
+		
+		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setSize(400, 300);
+		layeredPane.setLayout(null);
+		
+		try {
+			img = ImageIO.read(MainJFrame.class.getResource("/IMG/mailCheck.png"));
+		} catch(IOException e) {
+			JOptionPane.showMessageDialog(null, "이미지 불러오기 실패");
+			System.exit(0);
+		}
+		
+		
+		// button
+		JButton okBtn = new JButton("확인");
+		okBtn.setFont(new Font("레시피코리아 Medium", Font.PLAIN, 13));
+		okBtn.setBackground(new Color(255, 255, 255));
+		okBtn.setForeground(new Color(247, 0, 0));
+		okBtn.setBounds(217, 238, 80, 38);
+		layeredPane.add(okBtn);
+	      
+		okBtn.addActionListener(new ActionListener() {
+		   public void actionPerformed(ActionEvent e) {
+				hide();
+				new PrintJFrame();
+		    }
+		});
+	      
+		JButton cancelBtn = new JButton("취소");
+		cancelBtn.setFont(new Font("레시피코리아 Medium", Font.PLAIN, 13));
+		cancelBtn.setBackground(new Color(255, 255, 255));
+		cancelBtn.setForeground(new Color(247, 0, 0));
+		cancelBtn.setBounds(307, 238, 80, 38);
+		layeredPane.add(cancelBtn);
+	      
+		cancelBtn.addActionListener(new ActionListener() {
+		   public void actionPerformed(ActionEvent e) {
+				hide();
+		    	new Select();
+		   }
+		});
+		
+		
+		// panel
+		mailCheckPanel panel = new mailCheckPanel();
+		panel.setSize(400, 300);
+		layeredPane.add(panel);		
+				
+		getContentPane().setLayout(null);
+		getContentPane().add(layeredPane);
+		
+		
+		// textfield
+		JTextField idText = new JTextField();
+		idText.setBounds(31, 79, 155, 30);
+		idText.setColumns(5);
+		layeredPane.add(idText);
+				
+		JTextField pwText = new JTextField();
+		pwText.setBounds(31, 175, 155, 30);
+		pwText.setColumns(5);
+		layeredPane.add(pwText);
+		
+				
+		// base settings
+		setBounds(0, 0, 415, 330);
+		setVisible(true);									// 화면에 표시
+		setResizable(false);								// 프레임 크기 고정
+		setLocationRelativeTo(null);						// 창 가운데 정렬
+		setDefaultCloseOperation(EXIT_ON_CLOSE);			// 종료 버튼 활성화
+	}
 
-        // visible
-        setVisible(true);
-        
-        // add
-        la = new JLabel("Mail Check");
-        //la.setIcon(new ImageIcon(MainJFrame.class.getResource("/TEST/IMG/t.PNG")));
-        la.setForeground(new Color(178, 34, 34));
-        la.setFont(new Font("Felix Titling", Font.BOLD, 26));
-        la.setBounds(12, 10, 235, 57);
-        p.add(la);
-        
-        la1 = new JLabel("우편 수량을 입력하세요(단위 : 개)");
-        la1.setBounds(12, 87, 202, 21);
-        p.add(la1);
-        tf1 = new JTextField();
-        tf1.setBounds(12, 118, 155, 26);
-        p.add(tf1);
-        tf1.setColumns(10);
-        
-        la2 = new JLabel("우편 중량을 입력하세요(단위 : kg)");
-        la2.setBounds(12, 168, 260, 26);
-        p.add(la2);
-        tf2 = new JTextField();
-        tf2.setBounds(12, 204, 155, 26);
-        p.add(tf2);
-        tf2.setColumns(10);
-       
-        
-        bt1 = new JButton("확인");
-        bt1.setForeground(new Color(255, 250, 250));
-        bt1.setBounds(314, 209, 68, 21);
-        bt1.setBackground(new Color(205, 133, 63));
-        p.add(bt1);
-        
-        bt1.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-					hide();
-					new PrintJFrame();
-	    	}
-	    	});
-        
-        bt2 = new JButton("취소");
-        bt2.setForeground(new Color(255, 250, 250));
-        bt2.setBounds(314, 240, 68, 21);
-        bt2.setBackground(new Color(205, 133, 63));
-        p.add(bt2);
-        
-        bt2.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-					hide();
-	    			new Select();
-	    	}
-	    	});
-        
-        		
-        		
-	    	
-	    	
-	    	
-	    	
+	class mailCheckPanel extends JPanel {
+		public void paint(Graphics g) {
+			g.drawImage(img, 0, 0, null);
+		}
 	}
 }

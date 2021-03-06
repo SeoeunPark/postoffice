@@ -1,111 +1,114 @@
 package POSTOFFICE;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.*; 
-import javax.swing.*; 
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+
+import javax.swing.*;
+
+import POSTOFFICE.MailCheck.mailCheckPanel;
+
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.sql.*;
+
 
 public class showParcelChoose extends JFrame {
-	//PrintJFrame pj = new PrintJFrame();
-	showMailChoose smc = new showMailChoose();
+	BufferedImage img = null;
+	LoginGUI log = new LoginGUI();
+	Select sel = new Select();
 	
-	JPanel p1; 
-	JTextField /*w2, c2,*/ ad1, ad2, ad3;
-	JButton button, button_1;
-	JLabel la, la1, la2, la3, la4, la5;
-	
-	public showParcelChoose() {
-		//showParcelChoose spc = new showParcelChoose();
-		// setting
-	    setTitle("택배접수");
-	    setSize(500, 510);
-		setResizable(false);
-		setLocationRelativeTo(null);
-	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	   
-        // visible
-        setVisible(true);
-        
-        // Layout
-        p1 = new JPanel();
-        p1.setLayout(null);
-        getContentPane().add(p1);
-        
-        smc.w1 = new JTextField(10);
-        smc.c1 = new JTextField(10);
-        ad1 = new JTextField(30);
-        ad2 = new JTextField(30);
-        ad3 = new JTextField(100);
-        
-        la = new JLabel("ParcelChoose");
-        
-        button = new JButton("접수");
-        button_1 = new JButton("취소");
-        
-        p1.add(la);
-
-        la1 = new JLabel("택배 수량(개)");
-        la1.setSize(168, 26);
-        la1.setLocation(12, 67);
-        p1.add(la1);
-        p1.add(smc.w1);
-        
-        la2 = new JLabel("택배 무게(단위 : 0.0kg)");
-        la2.setSize(168, 26);
-        la2.setLocation(12, 144);
-        p1.add(la2);
-        p1.add(smc.c1);
-        
-        la3 = new JLabel("수신인");
-        la3.setSize(168, 26);
-        la3.setLocation(12, 213);
-        p1.add(la3);
-        p1.add(ad1);
-        
-        la4 = new JLabel("발신인");
-        la4.setSize(168, 26);
-        la4.setLocation(12, 296);
-        p1.add(la4);
-        p1.add(ad2);
-        
-        la5 = new JLabel("주소");
-        la5.setSize(168, 26);
-        la5.setLocation(12, 372);
-        p1.add(la5);
-        p1.add(ad3);
-
-        p1.add(button);
-        p1.add(button_1);
-       
-       
-        // add  
-        la.setFont(new Font("Felix Titling", Font.BOLD, 26));
-        la.setBounds(12, 10, 235, 57);
-        
-        smc.w1.setBounds(12, 98, 155, 26);
-        smc.c1.setBounds(12, 175, 155, 26);
-        ad1.setBounds(12, 249, 155, 26);
-        ad2.setBounds(12, 332, 155, 26);
-        ad3.setBounds(12, 408, 307, 26);
-        
-        button.setForeground(new Color(245, 245, 245));
-        button.setBounds(396, 387, 69, 21);
-        button.setBackground(new Color(47, 79, 79));
-        button.addActionListener(new ActionListener() {
+	showParcelChoose(){
+		setTitle("PARCEL RECEIPT");
+		
+		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setSize(500, 510);
+		layeredPane.setLayout(null);
+		
+		try {
+			img = ImageIO.read(MainJFrame.class.getResource("/IMG/parcelChoose.png"));
+		} catch(IOException e) {
+			JOptionPane.showMessageDialog(null, "이미지 불러오기 실패");
+			System.exit(0);
+		}
+		
+		// button
+		JButton receiptBtn = new JButton("접수");
+		receiptBtn.setFont(new Font("레시피코리아 Medium", Font.PLAIN, 13));
+		receiptBtn.setBackground(new Color(255, 255, 255));
+		receiptBtn.setForeground(new Color(247, 0, 0));
+		receiptBtn.setBounds(305, 448, 80, 38);
+		layeredPane.add(receiptBtn);
+		
+		receiptBtn.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 					hide();
 					new Receipt();
 	    	}
-	    	});
-        
-        button_1.setForeground(new Color(245, 245, 245));
-        button_1.setBounds(396, 413, 69, 21);
-        button_1.setBackground(new Color(47, 79, 79));
-        button_1.addActionListener(new ActionListener() {
+	    });
+
+		JButton cancelBtn = new JButton("취소");
+		cancelBtn.setFont(new Font("레시피코리아 Medium", Font.PLAIN, 13));
+		cancelBtn.setBackground(new Color(255, 255, 255));
+		cancelBtn.setForeground(new Color(247, 0, 0));
+		cancelBtn.setBounds(400, 448, 80, 38);
+		layeredPane.add(cancelBtn);
+		
+		cancelBtn.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 					hide();
-					new Select();
+					sel.setVisible(true);
 	    	}
-	    	});
+	    });
+		
+		
+		// textfield
+		JTextField countText = new JTextField();
+		countText.setBounds(27, 84, 165, 31);
+		countText.setColumns(5);
+		layeredPane.add(countText);
+						
+		JTextField weightText = new JTextField();
+		weightText.setBounds(27, 178, 165, 31);
+		weightText.setColumns(5);
+		layeredPane.add(weightText);
+		
+		JTextField addresseeText = new JTextField();
+		addresseeText.setBounds(27, 272, 165, 31);
+		addresseeText.setColumns(10);
+		layeredPane.add(addresseeText);
+		
+		JTextField senderText = new JTextField();
+		senderText.setBounds(287, 272, 166, 31);
+		senderText.setColumns(10);
+		layeredPane.add(senderText);
+		
+		JTextField addressText = new JTextField();
+		addressText.setBounds(27, 368, 425, 32);
+		addressText.setColumns(50);
+		layeredPane.add(addressText);
+		
+		
+		// panel
+		parcelChoosePanel panel = new parcelChoosePanel();
+		panel.setSize(500, 510);
+		layeredPane.add(panel);		
+						
+		getContentPane().setLayout(null);
+		getContentPane().add(layeredPane);
+		
+		
+		// base settings
+		setBounds(0, 0, 515, 540);
+		setVisible(true);									// 화면에 표시
+		setResizable(false);								// 프레임 크기 고정
+		setLocationRelativeTo(null);						// 창 가운데 정렬
+		setDefaultCloseOperation(EXIT_ON_CLOSE);			// 종료 버튼 활성화
 	}
-}
+
+	class parcelChoosePanel extends JPanel {
+		public void paint(Graphics g) {
+			g.drawImage(img, 0, 0, null);
+		}
+	}
+}	

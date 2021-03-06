@@ -1,77 +1,98 @@
 package POSTOFFICE;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.*; 
-import javax.swing.*; 
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+
+import javax.swing.*;
+
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 
 public class showChoose extends JFrame {
-	JPanel p;
-	JLabel la;
-	JButton bt1, bt2,bt3;
+	BufferedImage img = null;
 	Select select = new Select();
 	
-	public showChoose() {
-		// setting
-	    setTitle("Choose");
-	    setSize(500, 200);
-		setResizable(false);
-		setLocationRelativeTo(null);
-	    setDefaultCloseOperation(EXIT_ON_CLOSE);
-	   
-	    // panel
-	    p = new JPanel();
-	    p.setLayout(null);
-	    p.setBackground(new Color(245, 245, 245));
-	    getContentPane().add(p);
-	
-	    // visible
-	    setVisible(true);
+	showChoose() {
+		setTitle("선택 화면");
+		
+		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setSize(500, 200);
+		layeredPane.setLayout(null);
+		
+		try {
+			img = ImageIO.read(MainJFrame.class.getResource("/IMG/Choose.png"));
+		} catch(IOException e) {
+			JOptionPane.showMessageDialog(null, "이미지 불러오기 실패");
+			System.exit(0);
+		}
+		
+		// button
+		JButton mailCheckBtn = new JButton("우편요금조회");
+		mailCheckBtn.setFont(new Font("레시피코리아 Medium", Font.PLAIN, 13));
+		mailCheckBtn.setBackground(new Color(247, 0, 0));
+		mailCheckBtn.setForeground(new Color(255, 255, 255));
+		mailCheckBtn.setBounds(60, 103, 150, 44);
+		layeredPane.add(mailCheckBtn);
+			      
+		mailCheckBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				hide();
+				new MailCheck();
+			}
+		});
+			      
+		JButton parcelCheckBtn = new JButton("택배요금조회");
+		parcelCheckBtn.setFont(new Font("레시피코리아 Medium", Font.PLAIN, 13));
+		parcelCheckBtn.setBackground(new Color(247, 0, 0));
+		parcelCheckBtn.setForeground(new Color(255, 255, 255));
+		parcelCheckBtn.setBounds(282, 103, 150, 44);
+		layeredPane.add(parcelCheckBtn);
+			      
+		parcelCheckBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				hide();
+				new ParcelCheck();
+			}
+		});
+		
+		JButton backBtn = new JButton("뒤로가기");
+		backBtn.setFont(new Font("레시피코리아 Medium", Font.PLAIN, 13));
+		backBtn.setBackground(new Color(255, 255, 255));
+		backBtn.setForeground(new Color(255, 139, 0));
+		backBtn.setBounds(400, 5, 90, 23);
+		layeredPane.add(backBtn);
 	    
-	    // add
-	    la = new JLabel("요금조회할 원하시는 항목을 선택해주세요");
-	    la.setFont(new Font("돋움체", Font.PLAIN, 14));
-	    la.setBounds(32, 23, 286, 25);
-	    p.add(la);
-	    
-	    bt1 = new JButton("우편요금조회");
-	    bt1.setForeground(new Color(0, 0, 128));
-	    bt1.setBackground(Color.WHITE);
-	    bt1.setBounds(32, 70, 134, 23);
-	    p.add(bt1);
-	    
-	    bt1.addActionListener(new ActionListener() {
+		backBtn.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
-					hide();
-					new MailCheck();
+				hide();
+				select.setTitle("로그인 중 입니다.");
+				select.setVisible(true);
 	    	}
-	    	});
-	    
-	    bt2 = new JButton("택배요금조회");
-	    bt2.setForeground(new Color(0, 0, 128));
-	    bt2.setBackground(Color.WHITE);
-	    bt2.setBounds(178, 70, 140, 23);
-	    p.add(bt2);
-	    bt2.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-					hide();
-					new ParcelCheck();
-	    	}
-	    	});
-	    
-	    bt3 = new JButton("뒤로 ");
-	    bt3.setForeground(new Color(0, 0, 128));
-	    bt3.setBackground(Color.WHITE);
-	    bt3.setBounds(330, 70, 140, 23);
-	    p.add(bt3);
-	    
-	    bt3.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-					hide();
-					select.setTitle("로그인 중 입니다.");
-					select.setVisible(true);
-	    	}
-	    	});
-    }
+	    });
+				
+				
+		// panel
+		showChoosePanel panel = new showChoosePanel();
+		panel.setSize(500, 200);
+		layeredPane.add(panel);		
+						
+		getContentPane().setLayout(null);
+		getContentPane().add(layeredPane);
+				
+						
+		// base settings
+		setBounds(0, 0, 515, 230);
+		setVisible(true);									// 화면에 표시
+		setResizable(false);								// 프레임 크기 고정
+		setLocationRelativeTo(null);						// 창 가운데 정렬
+		setDefaultCloseOperation(EXIT_ON_CLOSE);			// 종료 버튼 활성화
+	}
+
+	class showChoosePanel extends JPanel {
+		public void paint(Graphics g) {
+			g.drawImage(img, 0, 0, null);
+		}
+	}
 }

@@ -25,7 +25,7 @@ public class Select extends JFrame{
 	        
 	        Mail = new JButton(); //우편접수
 	        Mail.setBounds(84,71,102,37);
-	        Mail.setIcon(new ImageIcon(MainJFrame.class.getResource("/TEST/IMG/Mailchoose1.PNG")));
+	        Mail.setIcon(new ImageIcon(MainJFrame.class.getResource("/IMG/MailchooseIcon.png")));
 	        Mail.setBorderPainted(false); //외곽선 x
 	        Mail.setContentAreaFilled(false); //영역 채우기 x
 	        Mail.setFocusPainted(false); //테두리 x
@@ -46,7 +46,7 @@ public class Select extends JFrame{
 			
 	        Post = new JButton(); //택배접수
 	        Post.setBounds(312,53,140,219);
-	        Post.setIcon(new ImageIcon(MainJFrame.class.getResource("/TEST/IMG/Parcelchoose1.PNG")));
+	        Post.setIcon(new ImageIcon(MainJFrame.class.getResource("/IMG/ParcelchooseIcon.png")));
 	        Post.setBorderPainted(false); //외곽선 x
 	        Post.setContentAreaFilled(false); //영역 채우기 x
 	        Post.setFocusPainted(false); //테두리 x
@@ -68,7 +68,7 @@ public class Select extends JFrame{
 	        
 	        Iq1 = new JButton(); //요금조회
 			Iq1.setBounds(509,53,230,180);
-			Iq1.setIcon(new ImageIcon(MainJFrame.class.getResource("/TEST/IMG/Searchmail1.PNG")));
+			Iq1.setIcon(new ImageIcon(MainJFrame.class.getResource("/IMG/Searchmail.png")));
 			Iq1.setBorderPainted(false); //외곽선 x
 		    Iq1.setContentAreaFilled(false); //영역 채우기 x
 		    Iq1.setFocusPainted(false); //테두리 x
@@ -89,7 +89,7 @@ public class Select extends JFrame{
 	
 			Ifq = new JButton(); //정보조회
 			Ifq.setBounds(67, 298, 163, 69);
-			Ifq.setIcon(new ImageIcon(MainJFrame.class.getResource("/TEST/IMG/Searchnumber1.PNG")));
+			Ifq.setIcon(new ImageIcon(MainJFrame.class.getResource("/IMG/Searchnumber.png")));
 			Ifq.setBorderPainted(false); //외곽선 x
 		    Ifq.setContentAreaFilled(false); //영역 채우기 x
 		    Ifq.setFocusPainted(false); //테두리 x
@@ -111,7 +111,7 @@ public class Select extends JFrame{
 			/*
 			Cancel = new JButton(); //취소
 			Cancel.setBounds(299, 286, 163, 69);
-			Cancel.setIcon(new ImageIcon(MainJFrame.class.getResource("/TEST/IMG/Cancel1.PNG")));
+			Cancel.setIcon(new ImageIcon(MainJFrame.class.getResource("/IMG/Cancel.png")));
 			Cancel.setBorderPainted(false); //외곽선 x
 		    Cancel.setContentAreaFilled(false); //영역 채우기 x
 		    Cancel.setFocusPainted(false); //테두리 x
@@ -132,7 +132,7 @@ public class Select extends JFrame{
 
 			ChangeIf = new JButton(); //정보수정
 			ChangeIf.setBounds(531, 298, 163, 69);
-			ChangeIf.setIcon(new ImageIcon(MainJFrame.class.getResource("/TEST/IMG/Modify1.PNG")));
+			ChangeIf.setIcon(new ImageIcon(MainJFrame.class.getResource("/IMG/Modify.png")));
 			ChangeIf.setBorderPainted(false); //외곽선 x
 		    ChangeIf.setContentAreaFilled(false); //영역 채우기 x
 		    ChangeIf.setFocusPainted(false); //테두리 x
@@ -155,7 +155,7 @@ public class Select extends JFrame{
 			
 			Management = new JButton(); //회원관리
 			Management.setBounds(677, 346, 107, 125);
-			Management.setIcon(new ImageIcon(MainJFrame.class.getResource("/TEST/IMG/Gearwhell1.PNG"))); //사이즈조정하기
+			Management.setIcon(new ImageIcon(MainJFrame.class.getResource("/IMG/Gearwhell.png"))); //사이즈조정하기
 			Management.setBorderPainted(false); //외곽선 x
 		    Management.setContentAreaFilled(false); //영역 채우기 x
 		    Management.setFocusPainted(false); //테두리 x
