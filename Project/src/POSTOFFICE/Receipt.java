@@ -1,33 +1,25 @@
 package POSTOFFICE;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
-import POSTOFFICE.showPayChoose.pay;
+import POSTOFFICE.MainJFrame.backgroundPanel;
+
+import java.sql.*;
+
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
+//import POSTOFFICE.showPayChoose.pay;
+
 
 public class Receipt extends JFrame {
-	JPanel p; //p 배경
-	JLabel la;
-	JTextField tf;
-	JButton b1;
-	 Connection con;
-	  Statement st;
-	  PreparedStatement ps;
-	  ResultSet rs;
+	BufferedImage img = null;
+	  
 	Select select = new Select();
 	showMailChoose showmail = new showMailChoose();
 	LoginGUI log = new LoginGUI();
@@ -35,50 +27,44 @@ public class Receipt extends JFrame {
 	
 	String driver = "com.mysql.jdbc.Driver";
 	String url = "jdbc:mysql://localhost/testlist1?characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false\\r\\n&serverTimezone=UTC&useSSL=false";
-	  
+	
 	Receipt(){
-		// setting
-	    setTitle("접수완료");
-	    setSize(300, 250);
-		setResizable(false);
-		setLocationRelativeTo(null);
-	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    
-	    // visible
-	    setVisible(true);
-	   
-	    // Layout
-	    p = new JPanel(); 
-	    p.setLayout(null);
-	    p.setBackground(new Color(230, 230, 250));
-	    getContentPane().add(p);
-	    
-	    b1 = new JButton("메인으로");
-	    // add
-	    la = new JLabel("접수가 완료되었습니다.");
-	    la.setFont(new Font("돋움체", Font.PLAIN, 14));
-	    la.setBounds(65, 20, 189, 38);
-
-	    p.add(la);
-	    p.add(b1);
-	    
-	    b1.setForeground(new Color(0, 128, 128));
-	    b1.setBackground(Color.WHITE);
-	    b1.setBounds(79, 75, 140, 41);
-	    
-	    b1.addActionListener(new ActionListener() {
+		setTitle("접수 완료");
+		
+		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setSize(300, 250);
+		layeredPane.setLayout(null);
+		
+		try {
+			img = ImageIO.read(MainJFrame.class.getResource("/IMG/receipt.png"));
+		} catch(IOException e) {
+			JOptionPane.showMessageDialog(null, "이미지 불러오기 실패");
+			System.exit(0);
+		}
+		
+		// button
+		JButton go_to_mainBtn = new JButton("메인으로");
+		go_to_mainBtn.setFont(new Font("레시피코리아 Medium", Font.PLAIN, 13));
+		go_to_mainBtn.setBackground(new Color(255, 255, 255));
+		go_to_mainBtn.setForeground(new Color(247, 0, 0));
+		go_to_mainBtn.setBounds(75, 110, 150, 43);
+		layeredPane.add(go_to_mainBtn);
+		
+		go_to_mainBtn.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
-					hide();
-					select.setTitle("로그인 중 입니다.");
-					select.setVisible(true);
-					//new PrintJFrame();
+				hide();
+				select.setTitle("로그인 중 입니다.");
+				select.setVisible(true);
+				//new PrintJFrame();
 	    	}
-	    	});
-	    try {
+	    });
+		
+		
+		try {
 	          // 로드
 	          Class.forName(driver);
 	          // 연결
-	          con = DriverManager.getConnection(url,"root", "se9703709");
+	          Connection con = DriverManager.getConnection(url,"root", "se9703709");
 	          java.util.Scanner in = new java.util.Scanner(System.in);
 	  			java.sql.Statement stmt = con.createStatement();
 	          java.io.InputStreamReader isr = new java.io.InputStreamReader(System.in);
@@ -94,12 +80,12 @@ public class Receipt extends JFrame {
 //	          ps.setString(7, showmail.ad3.getText());
 	          
 	          
-	          String idstr = log.tex1.getText().trim();
-	          String w1str = showmail.w1.getText().trim();
-	          String c1str =showmail.c1.getText().trim();
-	          String ad1str= showmail.ad1.getText().trim();
-	          String ad2str = showmail.ad2.getText().trim();
-	          String ad3str = showmail.ad3.getText().trim();
+	          String idstr = log.idText.getText().trim();
+	          String w1str = showmail.weightText.getText().trim();
+	          String c1str =showmail.countText.getText().trim();
+	          String ad1str= showmail.addresseeText.getText().trim();
+	          String ad2str = showmail.senderText.getText().trim();
+	          String ad3str = showmail.addressText.getText().trim();
 	          //System.out.println(id);
 	          //디비 연결 필요 
 	          //디비 연결...
@@ -111,5 +97,28 @@ public class Receipt extends JFrame {
 	      } catch (SQLException e) {
 	          System.out.println(e + "=> 연결 fail");
 	      }
+		
+		
+		// panel
+		receiptPanel panel = new receiptPanel();
+		panel.setSize(300, 250);
+		layeredPane.add(panel);		
+				
+		setLayout(null);
+		add(layeredPane);
+				
+				
+		// base settings
+		setBounds(0, 0, 310, 290);
+		setVisible(true);									// 화면에 표시
+		setResizable(false);								// 프레임 크기 고정
+		setLocationRelativeTo(null);						// 창 가운데 정렬
+		setDefaultCloseOperation(EXIT_ON_CLOSE);			// 종료 버튼 활성화
+	}
+			
+	class receiptPanel extends JPanel {
+		public void paint(Graphics g) {
+			g.drawImage(img, 0, 0, null);
+		}
 	}
 }
